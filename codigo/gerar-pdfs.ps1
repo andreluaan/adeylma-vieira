@@ -1,11 +1,11 @@
-# Gera os PDFs em .\arquivos a partir das páginas em .\pdf, usando o Microsoft Edge.
+# Gera os PDFs em ..\pdfs a partir das páginas em .\paginas-pdf, usando o Microsoft Edge.
 $raiz = $PSScriptRoot
 $edge = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 $perfil = Join-Path $env:TEMP "adeylma-edge"
-$saida = Join-Path $raiz "arquivos"
+$saida = Join-Path (Split-Path $raiz -Parent) "pdfs"
 New-Item -ItemType Directory -Force $saida | Out-Null
 
-$base = ([System.Uri](Join-Path $raiz "pdf")).AbsoluteUri
+$base = ([System.Uri](Join-Path $raiz "paginas-pdf")).AbsoluteUri
 $pdfs = @(
   @{ url = "$base/apresentacao.html"; nome = "Adeylma-Vieira-Apresentacao.pdf" },
   @{ url = "$base/cartao.html"; nome = "Adeylma-Vieira-Cartao-Preto.pdf" },
