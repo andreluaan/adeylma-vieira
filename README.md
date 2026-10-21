@@ -2,6 +2,8 @@
 
 Identidade visual da revendedora Adeylma Vieira (D'Luck, Del Rayssa Lingerie e La Paola Lingerie), com duas versões de cor: preta e bege.
 
+Site: https://andreluaan.github.io/adeylma-vieira/
+
 ## pdfs/
 
 - `Adeylma-Vieira-Apresentacao.pdf`: apresentação da marca em A4, com as duas versões
