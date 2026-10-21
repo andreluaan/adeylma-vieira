@@ -1,0 +1,331 @@
+@page {
+  size: 297mm 210mm;
+  margin: 0;
+}
+
+html,
+body {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  background: var(--cor-superficie);
+  font-size: 12px;
+}
+
+/* O gerador de PDF deixa riscos no texto com gradiente; aqui o brilho vira cor sólida */
+.brilho {
+  animation: none;
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  color: var(--brilho-solido);
+}
+
+.rotulo {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+}
+
+.folha {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 8mm;
+  width: 297mm;
+  height: 210mm;
+  overflow: hidden;
+  padding: 12mm 14mm 10mm;
+  break-after: page;
+}
+
+.folha:last-child {
+  break-after: auto;
+}
+
+.folha__cabecalho {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  padding-bottom: 4mm;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.folha__cabecalho .sobretitulo {
+  display: block;
+  margin-bottom: 2mm;
+}
+
+.folha__titulo {
+  font-size: 26px;
+  line-height: 1.1;
+}
+
+.folha__numero {
+  color: var(--cor-texto-suave);
+  font-family: var(--fonte-titulo);
+  font-size: 13px;
+}
+
+.folha__numero em {
+  color: var(--cor-destaque-suave);
+}
+
+.painel {
+  display: grid;
+  align-content: start;
+  gap: 5mm;
+  padding: 7mm;
+  border-radius: 6px;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+}
+
+/* Folha 1: identidade */
+
+.identidade {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 9mm;
+  min-height: 0;
+}
+
+.identidade__topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10mm;
+}
+
+.identidade .assinatura__nome {
+  font-size: 76px;
+}
+
+.identidade .monograma {
+  width: 110px;
+  height: 110px;
+}
+
+.identidade .monograma__letras {
+  font-size: 48px;
+}
+
+.identidade__colunas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+  gap: 7mm;
+  min-height: 0;
+}
+
+.ficha {
+  display: grid;
+  gap: 1mm;
+  margin: 0;
+  padding-top: 2mm;
+}
+
+.ficha dt {
+  font-weight: 500;
+}
+
+.ficha dd {
+  margin: 0;
+  color: var(--cor-texto-suave);
+}
+
+.ficha dd + dt {
+  margin-top: 3mm;
+}
+
+.paleta__assinatura {
+  font-family: var(--fonte-titulo);
+  font-size: 34px;
+  line-height: 1;
+}
+
+.paleta__assinatura em {
+  color: var(--cor-destaque-suave);
+}
+
+.paleta__cores {
+  display: grid;
+  gap: 6mm;
+}
+
+.paleta__cor {
+  display: grid;
+  grid-template-columns: 24mm 1fr;
+  align-items: center;
+  column-gap: 4mm;
+}
+
+.paleta__cor .amostra__cor {
+  grid-row: span 2;
+  height: 17mm;
+  margin: 0;
+  border-radius: 3px;
+}
+
+.paleta__cor .amostra__uso {
+  font-size: 11px;
+}
+
+/* Folha 2: cartões */
+
+.grade-cartoes {
+  display: grid;
+  grid-template-columns: 22mm 1fr 1fr;
+  grid-template-rows: auto 1fr 1fr auto;
+  align-items: center;
+  gap: 4mm 8mm;
+}
+
+.grade-cartoes__versao {
+  justify-self: center;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--fonte-titulo);
+  font-size: 18px;
+}
+
+.grade-cartoes .observacao {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--cor-texto-suave);
+  font-size: 11px;
+}
+
+/* Folha 3: Instagram */
+
+.grade-perfis {
+  display: grid;
+  grid-template-columns: 82mm 82mm 1fr;
+  align-items: start;
+  gap: 8mm;
+  min-height: 0;
+}
+
+.grade-perfis__coluna {
+  display: grid;
+  gap: 3mm;
+}
+
+.grade-perfis .perfil {
+  gap: 9px;
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.grade-perfis .perfil__topo {
+  gap: 12px;
+}
+
+.grade-perfis .perfil__foto {
+  width: 58px;
+  height: 58px;
+}
+
+.grade-perfis .perfil__foto .monograma__letras {
+  font-size: 22px;
+}
+
+.grade-perfis .perfil__usuario {
+  font-size: 15px;
+}
+
+.grade-perfis .perfil__bio {
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.grade-perfis .perfil__destaques {
+  gap: 8px;
+  overflow: hidden;
+}
+
+.grade-perfis .destaque__capa {
+  width: 40px;
+  height: 40px;
+  font-size: 10px;
+}
+
+.grade-perfis .destaque__nome {
+  font-size: 9px;
+}
+
+.grade-perfis .post:nth-child(n + 7) {
+  display: none;
+}
+
+.grade-perfis__dicas {
+  display: grid;
+  gap: 6mm;
+  padding-top: 7mm;
+}
+
+.grade-perfis .dica {
+  gap: 1.5mm;
+  padding-top: 3mm;
+}
+
+.grade-perfis .dica__titulo {
+  font-size: 17px;
+}
+
+.grade-perfis .dica__texto {
+  font-size: 12px;
+}
+
+/* Folha 4: textos */
+
+.grade-textos {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr 1.15fr;
+  align-items: start;
+  gap: 6mm;
+  min-height: 0;
+}
+
+.grade-textos__coluna {
+  display: grid;
+  gap: 6mm;
+}
+
+.grade-textos .caixa-texto {
+  background: var(--cor-fundo);
+}
+
+.grade-textos .caixa-texto__cabecalho {
+  padding: 3mm 4mm;
+}
+
+.grade-textos .caixa-texto__conteudo {
+  padding: 5mm;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.nota-grafica {
+  display: grid;
+  gap: 2mm;
+  padding: 4mm;
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+}
+
+.nota-grafica__titulo {
+  font-size: 17px;
+}
+
+.nota-grafica__texto {
+  margin: 0;
+  color: var(--cor-texto-suave);
+  font-size: 12px;
+}
+
+.nota-grafica__texto b {
+  color: var(--cor-texto);
+  font-weight: 500;
+}

@@ -1,0 +1,68 @@
+:root {
+  --fonte-titulo: "Bodoni Moda", "Didot", "Times New Roman", serif;
+  --fonte-texto: "Jost", "Futura", "Segoe UI", sans-serif;
+  --fonte-mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  --amostra-preto: #121011;
+  --amostra-bege: #e8dccb;
+}
+
+[data-tema="preto"] {
+  --cor-fundo: #0d0b0c;
+  --cor-superficie: #161314;
+  --cor-borda: #2a2326;
+  --cor-texto: #efe8ea;
+  --cor-texto-suave: #9b8f94;
+  --cor-destaque: #8c3d66;
+  --cor-destaque-suave: #b86a92;
+  --cor-sobre-destaque: #f7f1e8;
+  --cor-link: #8fb5ff;
+
+  --cartao-fundo: #121011;
+  --cartao-slogan: #6a5f64;
+  --cartao-texto: #c9bfc3;
+  --cartao-sombra: 0 20px 40px -18px rgba(0, 0, 0, 0.8);
+
+  --brilho: linear-gradient(115deg, #4a4045 0%, #a99fa4 30%, #5a5055 50%, #c9c0c4 72%, #5f555a 100%);
+  --brilho-solido: #b3a9ae;
+
+  --perfil-fundo: #000;
+  --perfil-texto: #f5f5f5;
+  --post-arte-fundo: #121011;
+  --post-arte-texto: #efe8ea;
+  --post-foto-listra-1: #191517;
+  --post-foto-listra-2: #1d181b;
+  --post-foto-texto: #5d5357;
+
+  color-scheme: dark;
+}
+
+[data-tema="bege"] {
+  --cor-fundo: #efe6da;
+  --cor-superficie: #f7f1e8;
+  --cor-borda: #dccfbd;
+  --cor-texto: #3a2c24;
+  --cor-texto-suave: #8a776a;
+  --cor-destaque: #7b5a44;
+  --cor-destaque-suave: #a27a58;
+  --cor-sobre-destaque: #f7f1e8;
+  --cor-link: #00376b;
+
+  --cartao-fundo: #e8dccb;
+  --cartao-slogan: #8a776a;
+  --cartao-texto: #5c4a3e;
+  --cartao-sombra: 0 20px 40px -18px rgba(80, 55, 35, 0.45);
+
+  --brilho: linear-gradient(115deg, #7d5d3c 0%, #b8965f 35%, #8a6a45 55%, #c9a978 75%, #7d5d3c 100%);
+  --brilho-solido: #a8864f;
+
+  --perfil-fundo: #fff;
+  --perfil-texto: #262626;
+  --post-arte-fundo: #efe6da;
+  --post-arte-texto: #3a2c24;
+  --post-foto-listra-1: #ebe1d3;
+  --post-foto-listra-2: #e4d8c7;
+  --post-foto-texto: #a8968a;
+
+  color-scheme: light;
+}

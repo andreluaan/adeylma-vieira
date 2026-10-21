@@ -1,0 +1,432 @@
+/* Assinatura e monograma */
+
+.assinatura {
+  display: grid;
+  gap: 6px;
+}
+
+.assinatura__nome {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(40px, 11vw, 104px);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+}
+
+.assinatura__nome em {
+  color: var(--cor-destaque-suave);
+}
+
+.assinatura__slogan {
+  padding-left: 4px;
+  color: var(--cor-texto-suave);
+  font-size: 12px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+}
+
+.monograma {
+  display: grid;
+  place-items: center;
+  width: 120px;
+  height: 120px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 50%;
+  background: var(--cartao-fundo);
+}
+
+.monograma__letras {
+  color: var(--cor-texto);
+  font-family: var(--fonte-titulo);
+  font-size: 54px;
+  line-height: 1;
+  letter-spacing: -0.12em;
+}
+
+.monograma__letras i {
+  color: var(--cor-destaque-suave);
+}
+
+/* Amostras de cor */
+
+.amostra {
+  display: grid;
+  align-content: start;
+  gap: 2px;
+  padding: 16px;
+  border: 1px solid var(--cor-borda);
+}
+
+.amostra__cor {
+  height: 52px;
+  margin-bottom: 10px;
+  border: 1px solid var(--cor-borda);
+}
+
+.amostra__nome {
+  font-weight: 500;
+}
+
+.amostra__uso {
+  color: var(--cor-texto-suave);
+  font-size: 13px;
+}
+
+.cor-fundo-cartao {
+  background: var(--cartao-fundo);
+}
+
+.cor-destaque {
+  background: var(--cor-destaque);
+}
+
+.cor-texto {
+  background: var(--cor-texto);
+}
+
+/* Cartão de visita: 9 x 5 cm, medidas em cqw para escalar com a largura */
+
+.cartao {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 9 / 5;
+  border-radius: 6px;
+  background: var(--cartao-fundo);
+  box-shadow: var(--cartao-sombra), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  container-type: inline-size;
+}
+
+.brilho {
+  background: var(--brilho);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: brilhar 7s ease-in-out infinite alternate;
+}
+
+@keyframes brilhar {
+  from { background-position: 0% 0; }
+  to { background-position: 100% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brilho {
+    animation: none;
+  }
+}
+
+.cartao--frente {
+  display: grid;
+  place-items: center;
+}
+
+.cartao__logo {
+  display: grid;
+  gap: 1.6cqw;
+  text-align: center;
+}
+
+.cartao__nome {
+  font-family: var(--fonte-titulo);
+  font-size: 11cqw;
+  line-height: 0.95;
+}
+
+.cartao__slogan {
+  padding-left: 0.6em;
+  color: var(--cartao-slogan);
+  font-size: 2.4cqw;
+  letter-spacing: 0.6em;
+  text-transform: uppercase;
+}
+
+.cartao--verso {
+  --recuo-lateral: 0px;
+  display: grid;
+  grid-template-columns: 17% 1fr;
+}
+
+.cartao__lateral {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--recuo-lateral) - 0.5cqw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--fonte-titulo);
+  font-size: 9.8cqw;
+  font-weight: 600;
+  line-height: 0.74;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.cartao__dados {
+  grid-column: 2;
+  display: grid;
+  align-content: center;
+  gap: 3.2cqw;
+  padding: 7cqw 6cqw 6cqw 4cqw;
+}
+
+.cartao__titular {
+  color: var(--cor-texto);
+  font-family: var(--fonte-titulo);
+  font-size: 6.4cqw;
+  line-height: 1;
+}
+
+.cartao__funcao {
+  margin-top: 1.4cqw;
+  color: var(--cor-destaque-suave);
+  font-size: 2.5cqw;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.cartao__marcas {
+  color: var(--cartao-texto);
+  font-size: 3cqw;
+  line-height: 1.5;
+}
+
+.cartao__contatos {
+  display: grid;
+  gap: 1.6cqw;
+  color: var(--cor-texto);
+  font-size: 3.2cqw;
+}
+
+.cartao__contato {
+  display: flex;
+  align-items: center;
+  gap: 2cqw;
+}
+
+.cartao__contato svg {
+  flex: none;
+  width: 3.8cqw;
+  height: 3.8cqw;
+  color: var(--cor-destaque-suave);
+}
+
+/* Perfil do Instagram */
+
+.perfil {
+  display: grid;
+  gap: 20px;
+  width: 100%;
+  max-width: 620px;
+  padding: 24px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 14px;
+  background: var(--perfil-fundo);
+  color: var(--perfil-texto);
+}
+
+.perfil__topo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+
+.perfil__foto {
+  flex: none;
+  width: 92px;
+  height: 92px;
+  padding: 3px;
+  border-radius: 50%;
+  background: conic-gradient(from 200deg, var(--cor-destaque), var(--cor-destaque-suave), var(--cor-borda), var(--cor-destaque));
+}
+
+.perfil__foto .monograma {
+  width: 100%;
+  height: 100%;
+  border: 3px solid var(--perfil-fundo);
+}
+
+.perfil__foto .monograma__letras {
+  font-size: 36px;
+}
+
+.perfil__identificacao {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.perfil__usuario {
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.perfil__numeros,
+.perfil__categoria {
+  color: var(--cor-texto-suave);
+}
+
+.perfil__numeros {
+  font-size: 13px;
+}
+
+.perfil__bio {
+  display: grid;
+  gap: 1px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.perfil__nome {
+  font-weight: 500;
+}
+
+.perfil__link {
+  color: var(--cor-link);
+  text-decoration: none;
+}
+
+.perfil__destaques {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.destaque {
+  display: grid;
+  flex: none;
+  justify-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+.destaque__capa {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 50%;
+  background: var(--post-arte-fundo);
+  color: var(--cor-destaque-suave);
+  font-family: var(--fonte-titulo);
+  font-size: 13px;
+  font-style: italic;
+}
+
+.destaque__nome {
+  font-size: 11px;
+}
+
+.perfil__feed {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+}
+
+.post {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  padding: 8%;
+  text-align: center;
+  container-type: inline-size;
+}
+
+.post--arte {
+  background: var(--post-arte-fundo);
+  color: var(--post-arte-texto);
+}
+
+.post--cor {
+  background: var(--cor-destaque);
+  color: var(--cor-sobre-destaque);
+}
+
+.post--foto {
+  background: repeating-linear-gradient(135deg, var(--post-foto-listra-1) 0 10px, var(--post-foto-listra-2) 10px 20px);
+  color: var(--post-foto-texto);
+}
+
+.post__aviso {
+  font-size: 9cqw;
+}
+
+.post__titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 15cqw;
+  line-height: 1.02;
+}
+
+.post__legenda {
+  margin-top: 6cqw;
+  opacity: 0.8;
+  font-size: 6.2cqw;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+/* Caixa de texto para copiar */
+
+.caixa-texto {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-width: 0;
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  background: var(--cor-superficie);
+}
+
+.caixa-texto__cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.caixa-texto__titulo {
+  color: var(--cor-texto-suave);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.caixa-texto__conteudo {
+  margin: 0;
+  padding: 16px;
+  color: var(--cor-texto);
+  font-family: var(--fonte-mono);
+  font-size: 13px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Dica */
+
+.dica {
+  display: grid;
+  gap: 6px;
+  padding-top: 14px;
+  border-top: 1px solid var(--cor-borda);
+}
+
+.dica__titulo {
+  font-size: 19px;
+}
+
+.dica__texto {
+  margin: 0;
+  color: var(--cor-texto-suave);
+  font-size: 14px;
+}

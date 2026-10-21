@@ -1,0 +1,45 @@
+/* Página de 96 x 56 mm: cartão de 90 x 50 mm com 3 mm de sangria em cada lado */
+@page {
+  size: 96mm 56mm;
+  margin: 0;
+}
+
+html,
+body {
+  background: var(--cartao-fundo);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.folha {
+  width: 96mm;
+  height: 56mm;
+  overflow: hidden;
+  break-after: page;
+}
+
+.folha:last-child {
+  break-after: auto;
+}
+
+.cartao {
+  width: 96mm;
+  height: 56mm;
+  aspect-ratio: auto;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.brilho {
+  animation: none;
+  background-position: 30% 0;
+}
+
+.cartao--verso {
+  --recuo-lateral: 3mm;
+  grid-template-columns: 20% 1fr;
+}
+
+.cartao__dados {
+  padding: 8mm 7mm 7mm 4mm;
+}
