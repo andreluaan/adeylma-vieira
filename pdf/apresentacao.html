@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="pt-BR" data-tema="bege">
+<head>
+<meta charset="utf-8">
+<title>Adeylma Vieira | Apresentação da marca</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<style>
+@page { size: 297mm 210mm; margin: 0; }
+html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { background: var(--surface); font-size: 12px; transition: none; }
+.gloss { animation: none; background: none; -webkit-background-clip: border-box; background-clip: border-box; }
+[data-tema="bege"] .gloss { color: #a8864f; }
+[data-tema="preto"] .gloss { color: #b3a9ae; }
+
+.page {
+  width: 297mm; height: 210mm; overflow: hidden; break-after: page;
+  padding: 12mm 14mm 10mm; display: grid; grid-template-rows: auto 1fr; gap: 8mm;
+}
+.page:last-child { break-after: auto; }
+.page-head { display: flex; justify-content: space-between; align-items: end; border-bottom: 1px solid var(--line); padding-bottom: 4mm; }
+.page-head h2 { font-size: 26px; line-height: 1.1; }
+.page-head .eyebrow { display: block; margin-bottom: 2mm; }
+.page-head .num { font-family: var(--display); font-size: 13px; color: var(--muted); }
+.page-head .num em { color: var(--accent-soft); }
+.label { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+.painel { background: var(--bg); color: var(--ink); border-radius: 6px; padding: 7mm; display: grid; gap: 5mm; align-content: start; }
+
+/* 1 · Identidade */
+.p1 { display: grid; grid-template-rows: auto 1fr; gap: 9mm; min-height: 0; }
+.p1 .topo { display: flex; justify-content: space-between; align-items: center; gap: 10mm; }
+.p1 .wordmark .name { font-size: 76px; }
+.p1 .baixo { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7mm; min-height: 0; align-items: start; }
+.p1 .mono { width: 110px; height: 110px; }
+.p1 .mono span { font-size: 48px; }
+.p1 .info { display: grid; align-content: start; gap: 4mm; padding-top: 2mm; }
+.p1 dl { margin: 0; display: grid; gap: 1mm; }
+.p1 dl dd + dt { margin-top: 3mm; }
+.p1 dt { font-weight: 500; }
+.p1 dd { margin: 0; color: var(--muted); }
+
+.p1 .painel .mini { font-family: var(--display); font-size: 34px; line-height: 1; }
+.p1 .painel .mini em { font-style: italic; color: var(--accent-soft); }
+.cores { display: grid; gap: 6mm; }
+.cor { grid-template-columns: 24mm 1fr; align-items: center; column-gap: 4mm; }
+.cor .chip { grid-row: span 2; margin: 0; }
+.cor { display: grid; gap: 1mm; }
+.cor .chip { height: 17mm; border: 1px solid var(--line); border-radius: 3px; }
+.cor b { font-weight: 500; }
+.cor span { color: var(--muted); font-size: 11px; }
+
+/* 2 · Cartões */
+.p2 { display: grid; grid-template-columns: 22mm 1fr 1fr; grid-template-rows: auto 1fr 1fr auto; gap: 4mm 8mm; align-items: center; }
+.p2 .linha { writing-mode: vertical-rl; transform: rotate(180deg); justify-self: center; font-family: var(--display); font-size: 18px; }
+.p2 .card { width: 100%; }
+
+.p2 .spec { grid-column: 1 / -1; color: var(--muted); font-size: 11px; margin: 0; }
+
+/* 3 · Instagram */
+.p3 { display: grid; grid-template-columns: 82mm 82mm 1fr; gap: 8mm; align-items: start; min-height: 0; }
+.p3 .col { display: grid; gap: 3mm; }
+.p3 .ig { padding: 12px; gap: 9px; border-radius: 10px; }
+.p3 .ig-top { gap: 12px; }
+.p3 .avatar { width: 58px; height: 58px; }
+.p3 .avatar span { font-size: 22px; }
+.p3 .ig-meta .handle { font-size: 15px; }
+.p3 .bio { font-size: 11px; line-height: 1.45; }
+.p3 .hl { gap: 8px; overflow: hidden; }
+.p3 .hl .ring { width: 40px; height: 40px; }
+.p3 .hl .ring span { font-size: 10px; }
+.p3 .hl figcaption { font-size: 9px; }
+.p3 .tile:nth-child(n+7) { display: none; }
+.p3 .notas { display: grid; gap: 6mm; padding-top: 7mm; }
+.p3 .nota { border-top: 1px solid var(--line); padding-top: 3mm; display: grid; gap: 1.5mm; }
+.p3 .nota h3 { font-size: 17px; }
+.p3 .nota p { margin: 0; color: var(--muted); }
+
+/* 4 · Textos */
+.p4 { display: grid; grid-template-columns: 1fr 1.15fr 1.15fr; gap: 6mm; align-items: start; min-height: 0; }
+.p4 .copy-box { background: var(--bg); }
+.p4 .copy-box pre { font-size: 12px; line-height: 1.65; padding: 5mm; }
+.p4 .copy-box header { padding: 3mm 4mm; }
+.p4 .esq { display: grid; gap: 6mm; }
+.p4 .grafica { border: 1px solid var(--line); border-radius: 8px; padding: 4mm; display: grid; gap: 2mm; }
+.p4 .grafica h3 { font-size: 17px; }
+.p4 .grafica p { margin: 0; color: var(--muted); font-size: 12px; }
+.p4 .grafica b { color: var(--ink); font-weight: 500; }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <div class="page-head">
+    <div><span class="eyebrow">Identidade visual</span><h2>A marca Adeylma Vieira</h2></div>
+    <div class="num"><em>1</em> / 4</div>
+  </div>
+  <div class="p1">
+    <div class="topo">
+      <div class="wordmark">
+        <div class="name">Adeylma <em>Vieira</em></div>
+        <div class="tag">Moda &amp; Lingerie</div>
+      </div>
+      <div class="mono"><span>A<i>V</i></span></div>
+    </div>
+    <div class="baixo">
+      <div class="info">
+        <dl>
+          <dt>Revende</dt><dd>D'Luck · Del Rayssa Lingerie · La Paola Lingerie</dd>
+          <dt>Contato</dt><dd>WhatsApp (83) 99694-3038<br>Instagram @adeylmavieira</dd>
+          <dt>Fontes</dt><dd>Bodoni Moda para o nome e títulos, Jost para os textos. Gratuitas no Google Fonts e no Canva.</dd>
+          <dt>Monograma</dt><dd>AV, para foto de perfil, etiqueta e sacola.</dd>
+        </dl>
+      </div>
+      <div class="painel" data-tema="preto">
+        <div class="label">Versão preta</div>
+        <div class="mini">Adeylma <em>Vieira</em></div>
+        <div class="cores">
+          <div class="cor"><div class="chip chip-card"></div><b>Preto ônix</b><span>#121011 · fundos</span></div>
+          <div class="cor"><div class="chip chip-accent"></div><b>Ameixa</b><span>#8C3D66 · destaque</span></div>
+          <div class="cor"><div class="chip chip-ink"></div><b>Pérola</b><span>#EFE8EA · textos</span></div>
+        </div>
+      </div>
+      <div class="painel" data-tema="bege">
+        <div class="label">Versão bege</div>
+        <div class="mini">Adeylma <em>Vieira</em></div>
+        <div class="cores">
+          <div class="cor"><div class="chip chip-card"></div><b>Bege areia</b><span>#E8DCCB · fundos</span></div>
+          <div class="cor"><div class="chip chip-accent"></div><b>Café</b><span>#7B5A44 · destaque</span></div>
+          <div class="cor"><div class="chip chip-ink"></div><b>Chocolate</b><span>#3A2C24 · textos</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-head">
+    <div><span class="eyebrow">Cartão de visita</span><h2>Frente e verso, nas duas versões</h2></div>
+    <div class="num"><em>2</em> / 4</div>
+  </div>
+  <div class="p2">
+    <span></span><span class="label">Frente</span><span class="label">Verso</span>
+    <span class="linha">Preto</span>
+    <div class="card-wrap" data-tema="preto"><div data-comp="frente"></div></div>
+    <div class="card-wrap" data-tema="preto"><div data-comp="verso"></div></div>
+    <span class="linha">Bege</span>
+    <div class="card-wrap" data-tema="bege"><div data-comp="frente"></div></div>
+    <div class="card-wrap" data-tema="bege"><div data-comp="verso"></div></div>
+    <p class="spec">9 × 5 cm · couché 300 g · laminação fosca frente e verso · preto: verniz localizado ou hot stamping prata no nome · bege: hot stamping dourado no nome.</p>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-head">
+    <div><span class="eyebrow">Instagram</span><h2>Perfil @adeylmavieira</h2></div>
+    <div class="num"><em>3</em> / 4</div>
+  </div>
+  <div class="p3">
+    <div class="col" data-tema="preto"><span class="label">Versão preta</span><div data-comp="instagram"></div></div>
+    <div class="col" data-tema="bege"><span class="label">Versão bege</span><div data-comp="instagram"></div></div>
+    <div class="notas">
+      <div class="nota"><h3>Nome do perfil</h3><p>Adeylma Vieira | Moda &amp; Lingerie, na categoria Loja de roupas.</p></div>
+      <div class="nota"><h3>Foto de perfil</h3><p>Monograma AV no fundo da versão escolhida. Fica legível mesmo pequeno e combina com o cartão.</p></div>
+      <div class="nota"><h3>Ritmo do feed</h3><p>Uma arte da marca e duas fotos de peças, alternando. Cite sempre a marca da peça na legenda.</p></div>
+      <div class="nota"><h3>Destaques</h3><p>Novidades, um para cada marca e Como pedir. Capas com as iniciais na cor de destaque.</p></div>
+      <div class="nota"><h3>Link na bio</h3><p>wa.me/5583996943038 abre a conversa direto no WhatsApp.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-head">
+    <div><span class="eyebrow">Textos prontos</span><h2>Bio e mensagens de WhatsApp</h2></div>
+    <div class="num"><em>4</em> / 4</div>
+  </div>
+  <div class="p4">
+    <div class="esq">
+      <div class="copy-box"><header><span>Bio do Instagram</span></header><pre data-texto="bio"></pre></div>
+      <div class="grafica">
+        <h3>Para a gráfica</h3>
+        <p>Envie os arquivos <b>Adeylma-Vieira-Cartao-Preto.pdf</b> ou <b>Adeylma-Vieira-Cartao-Bege.pdf</b>. Eles já têm 96 × 56 mm, com 3 mm de sangria em cada lado.</p>
+        <p>Confirme se a gráfica pede o arquivo em CMYK ou com marcas de corte.</p>
+      </div>
+    </div>
+    <div class="copy-box"><header><span>Cartão no WhatsApp</span></header><pre data-texto="cartao"></pre></div>
+    <div class="copy-box"><header><span>Formulário de pedido</span></header><pre data-texto="formulario"></pre></div>
+  </div>
+</section>
+
+<script src="../components.js"></script>
+</body>
+</html>

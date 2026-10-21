@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="pt-BR" data-tema="preto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Adeylma Vieira | Moda &amp; Lingerie</title>
+<meta name="description" content="Identidade visual de Adeylma Vieira, revendedora D'Luck, Del Rayssa Lingerie e La Paola Lingerie.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script>
+  try {
+    const salvo = location.hash === "#bege" ? "bege" : location.hash === "#preto" ? "preto" : localStorage.getItem("tema");
+    if (salvo === "bege" || salvo === "preto") document.documentElement.dataset.tema = salvo;
+  } catch (e) {}
+</script>
+<style>
+.topo {
+  position: sticky; top: 0; z-index: 5;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+  padding-block: 12px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.topo-inner { max-width: 980px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.topo .marca { font-family: var(--display); font-size: 20px; }
+.topo .marca em { color: var(--accent-soft); }
+.tema { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; gap: 2px; }
+.tema button {
+  font: inherit; font-size: 13px; font-weight: 500; color: var(--muted); background: transparent;
+  border: 0; border-radius: 999px; padding: 6px 14px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+}
+.tema button[aria-pressed="true"] { background: var(--accent); color: #f7f1e8; }
+.tema .bolinha { width: 10px; height: 10px; border-radius: 50%; border: 1px solid currentColor; }
+.tema [data-escolha="preto"] .bolinha { background: #121011; }
+.tema [data-escolha="bege"] .bolinha { background: #e8dccb; }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 2px; }
+
+.wrap {
+  max-width: 980px; margin: 0 auto; display: grid; gap: 88px;
+  padding-block: 56px 80px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.section { display: grid; gap: 28px; }
+.section-head { display: grid; gap: 8px; max-width: 62ch; }
+.section-head h2 { font-size: clamp(26px, 4vw, 34px); }
+.section-head p, .spec { margin: 0; color: var(--muted); }
+.spec { font-size: 13px; }
+.hero { display: grid; gap: 36px; }
+.swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 16px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 28px; }
+.card-col { display: grid; gap: 10px; min-width: 0; }
+.card-col small { color: var(--muted); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+.notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 16px; }
+.note { border-top: 1px solid var(--line); padding-top: 14px; display: grid; gap: 6px; }
+.note h3 { font-size: 19px; }
+.note p { margin: 0; color: var(--muted); font-size: 14px; }
+.copy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr)); gap: 20px; }
+.copy-box button {
+  font: inherit; font-size: 13px; font-weight: 500; color: var(--ink); background: transparent;
+  border: 1px solid var(--accent); border-radius: 999px; padding: 5px 14px; cursor: pointer;
+}
+.copy-box button:hover { background: var(--accent); color: #f7f1e8; }
+.downloads { display: flex; flex-wrap: wrap; gap: 12px; }
+.downloads a {
+  color: var(--ink); text-decoration: none; border: 1px solid var(--line); border-radius: 8px;
+  padding: 14px 18px; display: grid; gap: 2px; flex: 1 1 220px;
+}
+.downloads a:hover { border-color: var(--accent); }
+.downloads b { font-weight: 500; }
+.downloads span { color: var(--muted); font-size: 13px; }
+footer { color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 20px; }
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="topo-inner">
+    <div class="marca">Adeylma <em>Vieira</em></div>
+    <div class="tema" role="group" aria-label="Tema">
+      <button type="button" id="tema-preto" data-escolha="preto" aria-pressed="true"><span class="bolinha"></span>Preto</button>
+      <button type="button" id="tema-bege" data-escolha="bege" aria-pressed="false"><span class="bolinha"></span>Bege</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <span class="eyebrow">Identidade visual</span>
+    <div class="wordmark">
+      <div class="name">Adeylma <em>Vieira</em></div>
+      <div class="tag">Moda &amp; Lingerie</div>
+    </div>
+    <div class="swatches">
+      <div class="swatch">
+        <div class="mono"><span>A<i>V</i></span></div>
+        <b>Monograma</b>
+        <span>Foto de perfil, etiqueta e sacola</span>
+      </div>
+      <div class="swatch">
+        <div class="chip chip-card"></div>
+        <b class="so-preto">Preto ônix</b><b class="so-bege">Bege areia</b>
+        <span class="so-preto">#121011 · fundo do cartão e dos posts</span><span class="so-bege">#E8DCCB · fundo do cartão e dos posts</span>
+      </div>
+      <div class="swatch">
+        <div class="chip chip-accent"></div>
+        <b class="so-preto">Ameixa</b><b class="so-bege">Café</b>
+        <span class="so-preto">#8C3D66 · cor de destaque</span><span class="so-bege">#7B5A44 · cor de destaque</span>
+      </div>
+      <div class="swatch">
+        <div class="chip chip-ink"></div>
+        <b class="so-preto">Pérola</b><b class="so-bege">Chocolate</b>
+        <span class="so-preto">#EFE8EA · textos</span><span class="so-bege">#3A2C24 · textos</span>
+      </div>
+    </div>
+    <p class="spec">Fontes: Bodoni Moda (nome e títulos) e Jost (textos). As duas são gratuitas no Google Fonts e no Canva.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <span class="eyebrow">Cartão de visita</span>
+      <h2 class="so-preto">Preto fosco com o nome em prata</h2>
+      <h2 class="so-bege">Bege com o nome em dourado</h2>
+      <p class="so-preto">O nome aparece em brilho sobre o preto. Na gráfica, peça laminação fosca e verniz localizado ou hot stamping prata no nome.</p>
+      <p class="so-bege">O nome aparece em dourado sobre o bege. Na gráfica, peça laminação fosca e hot stamping dourado no nome.</p>
+    </div>
+    <div class="cards">
+      <div class="card-col"><small>Frente</small><div data-comp="frente"></div></div>
+      <div class="card-col"><small>Verso</small><div data-comp="verso"></div></div>
+    </div>
+    <p class="spec">Tamanho 9 × 5 cm · papel couché 300 g · laminação fosca frente e verso.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <span class="eyebrow">Instagram</span>
+      <h2>Como o perfil fica arrumado</h2>
+      <p>O mesmo @adeylmavieira, com nome, bio, destaques e feed seguindo a marca. Os quadros listrados são onde entram as fotos das peças.</p>
+    </div>
+    <div data-comp="instagram"></div>
+    <div class="notes">
+      <div class="note"><h3>Foto de perfil</h3><p>Use o monograma AV. Fica legível mesmo pequeno e combina com o cartão.</p></div>
+      <div class="note"><h3>Ritmo do feed</h3><p>Alterne uma arte da marca com duas fotos de peças. Sempre cite a marca da peça na legenda.</p></div>
+      <div class="note"><h3>Destaques</h3><p>Um destaque por marca facilita a cliente achar o que quer.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <span class="eyebrow">Textos prontos</span>
+      <h2>Para copiar e colar</h2>
+      <p>Bio do Instagram e mensagens de WhatsApp.</p>
+    </div>
+    <div class="copy-grid">
+      <div class="copy-box"><header><span>Bio do Instagram</span><button type="button" id="copiar-bio" data-alvo="t-bio">Copiar</button></header><pre id="t-bio" data-texto="bio"></pre></div>
+      <div class="copy-box"><header><span>Cartão no WhatsApp</span><button type="button" id="copiar-cartao" data-alvo="t-cartao">Copiar</button></header><pre id="t-cartao" data-texto="cartao"></pre></div>
+      <div class="copy-box"><header><span>Formulário de pedido</span><button type="button" id="copiar-form" data-alvo="t-form">Copiar</button></header><pre id="t-form" data-texto="formulario"></pre></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <span class="eyebrow">Arquivos</span>
+      <h2>PDFs para baixar</h2>
+    </div>
+    <div class="downloads">
+      <a href="arquivos/Adeylma-Vieira-Apresentacao.pdf" download><b>Apresentação da marca</b><span>A4, as duas versões</span></a>
+      <a href="arquivos/Adeylma-Vieira-Cartao-Preto.pdf" download><b>Cartão preto</b><span>Para a gráfica, 9 × 5 cm com sangria</span></a>
+      <a href="arquivos/Adeylma-Vieira-Cartao-Bege.pdf" download><b>Cartão bege</b><span>Para a gráfica, 9 × 5 cm com sangria</span></a>
+    </div>
+  </section>
+
+  <footer>D'Luck, Del Rayssa Lingerie e La Paola Lingerie são marcas de seus respectivos donos, citadas aqui como marcas revendidas.</footer>
+</main>
+
+<script src="components.js"></script>
+<script>
+const botoesTema = document.querySelectorAll("[data-escolha]");
+function aplicarTema(tema) {
+  document.documentElement.dataset.tema = tema;
+  botoesTema.forEach(b => b.setAttribute("aria-pressed", String(b.dataset.escolha === tema)));
+  try { localStorage.setItem("tema", tema); } catch (e) {}
+}
+botoesTema.forEach(b => b.addEventListener("click", () => aplicarTema(b.dataset.escolha)));
+aplicarTema(document.documentElement.dataset.tema);
+
+document.querySelectorAll("[data-alvo]").forEach(botao => {
+  botao.addEventListener("click", () => {
+    const texto = document.getElementById(botao.dataset.alvo);
+    const avisar = msg => { botao.textContent = msg; setTimeout(() => botao.textContent = "Copiar", 1600); };
+    const selecionar = () => {
+      const faixa = document.createRange();
+      faixa.selectNodeContents(texto);
+      getSelection().removeAllRanges();
+      getSelection().addRange(faixa);
+      avisar("Selecionado");
+    };
+    try { navigator.clipboard.writeText(texto.innerText).then(() => avisar("Copiado"), selecionar); } catch (e) { selecionar(); }
+  });
+});
+</script>
+</body>
+</html>

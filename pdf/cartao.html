@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt-BR" data-tema="preto">
+<head>
+<meta charset="utf-8">
+<title>Adeylma Vieira | Cartão para a gráfica</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<script>
+  if (location.hash === "#bege") document.documentElement.dataset.tema = "bege";
+</script>
+<style>
+/* 96 x 56 mm = cartão 90 x 50 mm com 3 mm de sangria em cada lado */
+@page { size: 96mm 56mm; margin: 0; }
+html, body { background: var(--card-bg); -webkit-print-color-adjust: exact; print-color-adjust: exact; transition: none; }
+.page { width: 96mm; height: 56mm; overflow: hidden; break-after: page; }
+.page:last-child { break-after: auto; }
+.card { width: 96mm; height: 56mm; aspect-ratio: auto; border-radius: 0; box-shadow: none; }
+.gloss { animation: none; background-position: 30% 0; }
+.back { --edge-inset: 3mm; grid-template-columns: 20% 1fr; }
+.back .info { padding: 8mm 7mm 7mm 4mm; }
+</style>
+</head>
+<body>
+<div class="page" data-comp="frente"></div>
+<div class="page" data-comp="verso"></div>
+<script src="../components.js"></script>
+</body>
+</html>
