@@ -1,0 +1,53 @@
+{
+  "name": "estoque-adeylma",
+  "productName": "Estoque Adeylma",
+  "version": "1.0.0",
+  "description": "Controle de estoque da Adeylma Vieira",
+  "author": "André Luan",
+  "main": "aplicativo/main.js",
+  "private": true,
+  "scripts": {
+    "abrir": "electron .",
+    "instalador": "electron-builder --win nsis --publish never",
+    "publicar": "electron-builder --win nsis --publish always"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "br.com.adeylma.estoque",
+    "productName": "Estoque Adeylma",
+    "directories": {
+      "output": "instalador"
+    },
+    "files": [
+      "index.html",
+      "css/**",
+      "js/**",
+      "aplicativo/**",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
+      "shortcutName": "Estoque Adeylma",
+      "deleteAppDataOnUninstall": false
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "andreluaan",
+      "repo": "adeylma-vieira",
+      "releaseType": "release"
+    }
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.11"
+  }
+}

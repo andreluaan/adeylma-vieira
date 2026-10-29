@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Estoque · Adeylma Vieira</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,600&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="css/estoque.css">
+<script>try { const t = localStorage.getItem('tema'); if (t) document.documentElement.dataset.theme = t; } catch {}</script>
+</head>
+<body>
+<aside class="lateral">
+  <div class="marca"><h1>Adeylma<br>Vieira</h1><span>Estoque</span></div>
+  <nav>
+    <button class="ativo" data-tela="inicio"><i data-icone="home"></i>Início</button>
+    <button data-tela="produtos"><i data-icone="grid"></i>Produtos</button>
+    <button data-tela="vendas"><i data-icone="cart"></i>Vendas</button>
+    <button data-tela="resumo"><i data-icone="sliders"></i>Valores</button>
+    <button data-tela="historico"><i data-icone="refresh"></i>Movimentos</button>
+    <button data-tela="copias"><i data-icone="lock"></i>Cópias</button>
+  </nav>
+  <button class="tema" id="trocarTema" aria-label="Trocar tema"><i data-icone="moon"></i><span>Escuro</span></button>
+  <small class="versao" id="versao"></small>
+</aside>
+
+<div class="conteudo">
+<button class="faixa" id="faixaCopia" hidden></button>
+<main>
+  <section class="tela ativa" id="inicio">
+    <div class="cabeca"><h2>Olá, Adeylma</h2><p id="hoje"></p></div>
+    <div class="exemplos" id="avisoExemplos" hidden>
+      <i data-icone="info"></i><span class="cresce">Estes são dados de exemplo</span>
+      <button class="btn" id="apagarExemplos"><i data-icone="trash"></i>Apagar exemplos</button>
+    </div>
+    <div class="totais" id="totaisInicio"></div>
+    <div class="painel">
+      <div class="bloco largo"><h3><i data-icone="calendar"></i>Últimos 6 meses</h3><div id="graficoMeses"></div></div>
+      <div class="bloco largo"><h3><i data-icone="star"></i>Saldo de cada mês</h3><div id="saldosInicio"></div></div>
+      <div class="bloco barras"><h3><i data-icone="star"></i>Mais vendidos</h3><div id="maisVendidos"></div></div>
+      <div class="bloco"><h3><i data-icone="alert"></i>Acabando</h3><div id="acabando"></div></div>
+      <div class="bloco"><h3><i data-icone="refresh"></i>Últimos movimentos</h3><div id="ultimas"></div></div>
+      <div class="bloco barras"><h3><i data-icone="star"></i>Por marca</h3><div id="barrasMarca"></div></div>
+      <div class="bloco barras"><h3><i data-icone="grid"></i>Por categoria</h3><div id="barrasCategoria"></div></div>
+    </div>
+  </section>
+
+  <section class="tela" id="produtos">
+    <div class="cabeca linha-titulo"><h2>Produtos</h2><button class="btn" id="abrirListas"><i data-icone="edit"></i>Marcas e categorias</button></div>
+    <div class="barra">
+      <label class="busca"><i data-icone="search"></i><input id="busca" type="search" placeholder="Procurar"></label>
+      <select id="filtroMarca"></select>
+    </div>
+    <div class="chips" id="chipsCategoria"></div>
+    <div class="grade" id="grade"></div>
+  </section>
+
+  <section class="tela" id="vendas">
+    <div class="cabeca"><h2>Vendas</h2><p id="periodoVendas"></p></div>
+    <div class="filtros"><div class="chips" id="chipsPeriodo"></div><select class="seletor" id="mesVendas" aria-label="Escolher mês"></select></div>
+    <div class="totais" id="totaisVendas"></div>
+    <div class="painel">
+      <div class="bloco largo"><h3><i data-icone="calendar"></i><span id="tituloGraficoVendas">Vendas</span></h3><div id="graficoVendas"></div></div>
+      <div class="bloco largo" id="blocoSaldosVendas"><h3><i data-icone="star"></i>Saldo de cada mês</h3><div id="saldosVendas"></div></div>
+      <div class="bloco barras"><h3><i data-icone="star"></i>Por marca</h3><div id="vendasMarca"></div></div>
+      <div class="bloco barras"><h3><i data-icone="grid"></i>Por categoria</h3><div id="vendasCategoria"></div></div>
+      <div class="bloco largo"><h3><i data-icone="cart"></i>Todas as vendas</h3><div id="listaVendas"></div></div>
+    </div>
+  </section>
+
+  <section class="tela" id="resumo">
+    <div class="cabeca"><h2>Valores</h2></div>
+    <div class="chips" id="chipsMarca"></div>
+    <div class="totais" id="totais"></div>
+    <div class="tabela"><table id="tabelaMarcas"></table></div>
+    <div class="tabela"><table id="tabelaProdutos"></table></div>
+  </section>
+
+  <section class="tela" id="historico">
+    <div class="cabeca"><h2>Movimentos</h2></div>
+    <div class="bloco" id="listaMov"></div>
+  </section>
+
+  <section class="tela" id="copias">
+    <div class="cabeca"><h2>Cópias</h2><p>Escolha uma pasta do Google Drive.</p></div>
+    <div class="total" id="estadoCopia"></div>
+    <div class="acoes">
+      <button class="btn principal" id="escolherPasta"><i data-icone="check-circle"></i>Escolher pasta</button>
+      <button class="btn" id="baixarCopia"><i data-icone="download"></i>Baixar</button>
+      <button class="btn" id="restaurarCopia"><i data-icone="upload"></i>Restaurar</button>
+    </div>
+    <input type="file" id="arquivoCopia" accept=".json,application/json" hidden>
+  </section>
+</main>
+</div>
+
+<button class="flutuante" id="novo"><i data-icone="plus"></i>Novo</button>
+<div class="aviso" id="aviso"></div>
+<div class="atualizacao" id="atualizacao" role="status" hidden></div>
+
+<dialog id="janelaProduto">
+  <form class="janela" id="formProduto" method="dialog">
+    <h2 id="tituloForm">Novo produto</h2>
+    <div class="escolher-foto" id="areaFoto"></div>
+    <input type="file" id="arquivoFoto" accept="image/*" hidden>
+    <label for="fNome">Nome</label>
+    <input class="campo" id="fNome" required>
+    <label for="fMarca">Marca</label>
+    <div class="chips sugestoes" id="sugestoesMarca" data-campo="fMarca"></div>
+    <input class="campo" id="fMarca" placeholder="Nome da nova marca">
+    <label for="fCategoria">Categoria</label>
+    <div class="chips sugestoes" id="sugestoesCategoria" data-campo="fCategoria"></div>
+    <input class="campo" id="fCategoria" placeholder="Nome da nova categoria">
+    <div class="dois">
+      <div><label for="fCusto">Custo (R$)</label><input class="campo" id="fCusto" inputmode="decimal" placeholder="0,00" required></div>
+      <div><label for="fPreco">Preço (R$)</label><input class="campo" id="fPreco" inputmode="decimal" placeholder="0,00" required></div>
+    </div>
+    <div class="dois">
+      <div><label for="fQtd">Quantidade</label><input class="campo" id="fQtd" type="number" min="0" value="0"></div>
+      <div><label for="fMinimo">Avisar abaixo de</label><input class="campo" id="fMinimo" type="number" min="0" value="2"></div>
+    </div>
+    <div class="conta" id="conta"></div>
+    <div class="acoes">
+      <button type="button" class="btn perigo" id="apagar" hidden aria-label="Apagar"><i data-icone="trash"></i></button>
+      <button type="button" class="btn" id="cancelar">Cancelar</button>
+      <button type="submit" class="btn principal"><i data-icone="check"></i>Salvar</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="janelaListas">
+  <div class="janela">
+    <h2>Marcas e categorias</h2>
+    <h3 class="subtitulo">Marcas</h3>
+    <div id="lista-marca"></div>
+    <div class="adicionar">
+      <input class="campo" id="nova-marca" placeholder="Nova marca">
+      <button type="button" class="btn principal" id="adicionar-marca"><i data-icone="plus"></i>Adicionar</button>
+    </div>
+    <h3 class="subtitulo">Categorias</h3>
+    <div id="lista-categoria"></div>
+    <div class="adicionar">
+      <input class="campo" id="nova-categoria" placeholder="Nova categoria">
+      <button type="button" class="btn principal" id="adicionar-categoria"><i data-icone="plus"></i>Adicionar</button>
+    </div>
+    <div class="acoes"><button type="button" class="btn" id="fecharListas">Fechar</button></div>
+  </div>
+</dialog>
+
+<dialog id="janelaMov">
+  <form class="janela" id="formMov" method="dialog">
+    <h2 id="tituloMov"></h2>
+    <p id="nomeMov" class="suave"></p>
+    <div class="contador">
+      <button type="button" class="redondo" id="menosUm" aria-label="Menos"><i data-icone="minus"></i></button>
+      <input id="qtdMov" type="number" min="1" value="1">
+      <button type="button" class="redondo mais" id="maisUm" aria-label="Mais"><i data-icone="plus"></i></button>
+    </div>
+    <div id="campoVenda">
+      <label for="precoVenda">Vendido por (cada)</label>
+      <input class="campo" id="precoVenda" inputmode="decimal" placeholder="0,00">
+      <div class="conta" id="totalVenda"></div>
+    </div>
+    <div class="acoes">
+      <button type="button" class="btn" id="cancelarMov">Cancelar</button>
+      <button type="submit" class="btn principal" id="confirmarMov">Confirmar</button>
+    </div>
+  </form>
+</dialog>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
