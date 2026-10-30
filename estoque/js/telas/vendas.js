@@ -40,10 +40,10 @@ export function desenharVendas() {
   desenharFiltros();
 
   $('#totaisVendas').innerHTML = [
-    total('arrow-up', 'Vendido', real(soma.vendido), '', comparacao(soma.vendido, anterior.vendido)),
+    total('arrow-up', 'Vendido', real(soma.vendido), 'venda', comparacao(soma.vendido, anterior.vendido)),
     total('arrow-down', 'Custo', real(soma.gasto), 'gasto', comparacao(soma.gasto, anterior.gasto, false)),
     total('star', 'Lucro', real(soma.lucro), 'lucro', comparacao(soma.lucro, anterior.lucro)),
-    total('grid', 'Peças vendidas', soma.pecas),
+    total('grid', 'Peças vendidas', soma.pecas, 'venda'),
   ].join('');
 
   const pontos = resumoNoTempo(movimentos, faixa);

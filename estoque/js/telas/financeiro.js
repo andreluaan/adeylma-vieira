@@ -54,7 +54,7 @@ export function desenharFinanceiro() {
     total('check-circle', 'Já paguei', real(contas.pago), 'lucro'),
     total('alert', 'Falta pagar', real(contas.falta), contas.atrasadas ? 'alerta' : '',
       contas.atrasadas ? `<small class="saida">${contas.atrasadas} atrasada${contas.atrasadas > 1 ? 's' : ''}</small>` : ''),
-    total('arrow-down', 'A receber (fiado)', real(totalAReceber())),
+    total('arrow-down', 'A receber (fiado)', real(totalAReceber()), 'receber'),
   ].join('');
 
   const lista = contasDoMes();

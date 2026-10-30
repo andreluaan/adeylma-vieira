@@ -15,7 +15,7 @@ export function desenharInicio() {
 
   const mes = resumoDoPeriodo(movimentosEntre(intervaloDoMesAtual()));
   $('#totaisInicio').innerHTML = [
-    total('arrow-up', 'Vendido no mês', real(mes.vendido)),
+    total('arrow-up', 'Vendido no mês', real(mes.vendido), 'venda'),
     total('arrow-down', 'Custo no mês', real(mes.gasto), 'gasto'),
     total('star', 'Lucro no mês', real(mes.lucro), 'lucro'),
     total('grid', 'Peças no estoque', somar(dados.produtos).pecas),

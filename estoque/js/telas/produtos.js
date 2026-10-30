@@ -53,7 +53,7 @@ export function desenharProdutos() {
 
 function cartao(p) {
   const acabando = estaAcabando(p);
-  return `<article class="card">
+  return `<article class="card ${p.qtd === 0 ? 'esgotado' : acabando ? 'acabando' : ''}">
     <div class="foto">
       ${p.foto ? `<img src="${p.foto}" alt="">` : ilustracao(p.categoria)}
       <button class="editar" data-editar="${p.id}" aria-label="Editar">${icone('edit')}</button>

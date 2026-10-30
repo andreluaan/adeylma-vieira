@@ -22,7 +22,7 @@ export function desenharValores() {
   $('#totais').innerHTML = [
     total('grid', 'Peças', soma.pecas),
     total('arrow-down', 'Custo', real(soma.custo)),
-    total('arrow-up', 'Venda', real(soma.venda)),
+    total('arrow-up', 'Venda', real(soma.venda), 'venda'),
     total('star', 'Lucro', real(lucro(soma)), 'lucro'),
   ].join('');
 

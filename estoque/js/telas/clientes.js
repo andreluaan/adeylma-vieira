@@ -22,7 +22,7 @@ async function persistir(mensagem) {
 const iniciais = nome => nome.split(/\s+/).slice(0, 2).map(p => p[0]).join('').toUpperCase();
 
 function cartaoCliente({ cliente, totalComprado, pecas, ultimaCompra, deve }) {
-  return `<button type="button" class="cliente" data-cliente="${cliente.id}">
+  return `<button type="button" class="cliente ${deve ? 'devendo' : ''}" data-cliente="${cliente.id}">
     <span class="avatar">${escapar(iniciais(cliente.nome))}</span>
     <span class="cresce">
       <b>${escapar(cliente.nome)}</b>
@@ -41,8 +41,8 @@ export function desenharClientes() {
   $('#totaisClientes').innerHTML = [
     total('user', 'Clientes', todas.length),
     total('alert', 'Devendo', devendo.length, devendo.length ? 'alerta' : ''),
-    total('arrow-down', 'A receber', real(devendo.reduce((s, r) => s + r.deve, 0))),
-    total('cart', 'Já compraram', real(todas.reduce((s, r) => s + r.totalComprado, 0))),
+    total('arrow-down', 'A receber', real(devendo.reduce((s, r) => s + r.deve, 0)), 'receber'),
+    total('cart', 'Já compraram', real(todas.reduce((s, r) => s + r.totalComprado, 0)), 'venda'),
   ].join('');
 
   $('#listaClientes').innerHTML = !todas.length

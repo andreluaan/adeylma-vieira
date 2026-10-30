@@ -12,6 +12,11 @@
   --sobre: #ffffff;
   --sombra: rgba(58, 44, 36, .25);
   --gasto: #a39990;
+  /* Fundos suaves que dão significado: verde = venda/pago, vermelho = devendo/atrasado, âmbar = a receber */
+  --verde-suave: #e2eadc;
+  --vermelho-suave: #f3e1dc;
+  --ambar-suave: #f1e6d2;
+  --neutro-suave: #e7e1d8;
   /* Escala de espaço do Nanquim System (múltiplos de 4px) */
   --e1: 4px; --e2: 8px; --e3: 12px; --e4: 16px; --e6: 24px; --e8: 32px;
   --canto: 14px;
@@ -24,6 +29,7 @@
   --fundo: #0e0d0c; --superficie: #161514; --bege: #22201e; --borda: #262422;
   --texto: #ece6dd; --suave: #8c8780; --destaque: #d6c1a1; --verde: #9cc39a;
   --vermelho: #e3928a; --sobre: #0e0d0c; --sombra: rgba(0, 0, 0, .6); --gasto: #6f6a64;
+  --verde-suave: #1a241b; --vermelho-suave: #2b1b19; --ambar-suave: #2a2318; --neutro-suave: #1f1d1b;
   color-scheme: dark;
 }
 @media (prefers-color-scheme: dark) {
@@ -31,6 +37,7 @@
     --fundo: #0e0d0c; --superficie: #161514; --bege: #22201e; --borda: #262422;
   --texto: #ece6dd; --suave: #8c8780; --destaque: #d6c1a1; --verde: #9cc39a;
   --vermelho: #e3928a; --sobre: #0e0d0c; --sombra: rgba(0, 0, 0, .6); --gasto: #6f6a64;
+  --verde-suave: #1a241b; --vermelho-suave: #2b1b19; --ambar-suave: #2a2318; --neutro-suave: #1f1d1b;
     color-scheme: dark;
   }
 }
@@ -368,3 +375,27 @@ dialog { width: min(460px, calc(100% - 24px)); max-height: calc(100vh - 32px); b
 .ficha-resumo b { font-size: 15px; }
 .ficha-compras { max-height: 220px; overflow-y: auto; }
 @media (max-width: 820px) { .lista-clientes { grid-template-columns: 1fr; } .tema { display: none; } }
+
+/* Cores suaves por significado */
+.movimento { margin-bottom: 4px; padding: var(--e2) 10px; border: 0; border-radius: 10px; }
+.movimento.venda { background: var(--verde-suave); }
+.movimento.venda .mov, .movimento.venda .valor b { color: var(--verde); }
+.movimento.compra { background: var(--neutro-suave); }
+.movimento.compra .mov, .movimento.compra .valor b { color: var(--suave); }
+.movimento .mov { background: var(--superficie); }
+.total > svg { box-sizing: content-box; padding: 7px; border-radius: 10px; background: var(--bege); }
+.total.venda > svg, .total.lucro > svg { background: var(--verde-suave); color: var(--verde); }
+.total.gasto > svg { background: var(--neutro-suave); color: var(--suave); }
+.total.alerta > svg { background: var(--vermelho-suave); color: var(--vermelho); }
+.total.receber > svg { background: var(--ambar-suave); color: var(--destaque); }
+.conta-mes { margin-bottom: 4px; padding: var(--e2) 10px; border: 0; border-radius: 10px; }
+.conta-mes.paga { background: var(--verde-suave); }
+.conta-mes.atrasada { background: var(--vermelho-suave); }
+.conta-mes.hoje { background: var(--ambar-suave); }
+.devedor { margin-bottom: var(--e2); padding: var(--e2) var(--e3); border: 0; border-radius: 12px; background: var(--vermelho-suave); }
+.cliente.devendo { background: var(--vermelho-suave); border-color: transparent; }
+.card.acabando .qtd { background: var(--vermelho-suave); }
+.card.esgotado .foto { opacity: .55; }
+.card.esgotado .qtd { background: var(--neutro-suave); }
+.saldo.positivo { background: var(--verde-suave); border-color: transparent; }
+.saldo.negativo { background: var(--vermelho-suave); border-color: transparent; }

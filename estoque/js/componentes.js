@@ -7,12 +7,13 @@ export const total = (nomeIcone, rotulo, valor, classe = '', rodape = '') =>
 
 export const vazio = (nomeIcone, texto) => `<div class="vazio">${icone(nomeIcone)}<p>${texto}</p></div>`;
 
+/** Venda (saída do estoque) em verde; compra (entrada) em tom neutro. */
 export function linhaMovimento(m) {
   const entrada = m.tipo === 'entrada';
-  return `<div class="linha">
-    <span class="mov ${m.tipo}">${icone(entrada ? 'arrow-up' : 'arrow-down')}</span>
+  return `<div class="linha movimento ${entrada ? 'compra' : 'venda'}">
+    <span class="mov">${icone(entrada ? 'arrow-down' : 'arrow-up')}</span>
     <span class="cresce">${escapar(m.produto)}${m.tamanho ? ` (${m.tamanho})` : ''}<br><small>${dataCurta(m.data)}${m.cliente ? ` · ${escapar(m.cliente)}` : ''}</small></span>
-    <span class="valor"><b class="${m.tipo}">${entrada ? '+' : '−'}${m.qtd}</b>${entrada ? '' : `<br><small>${real(m.qtd * (m.preco ?? 0))}</small>`}</span>
+    <span class="valor"><b>${entrada ? '+' : '−'}${m.qtd}</b>${entrada ? '' : `<br><small>${real(m.qtd * (m.preco ?? 0))}</small>`}</span>
   </div>`;
 }
 
