@@ -7,6 +7,8 @@ contextBridge.exposeInMainWorld('aplicativo', {
   estadoDasCopias: () => ipcRenderer.invoke('copias:estado'),
   escolherPastaDasCopias: () => ipcRenderer.invoke('copias:escolherPasta'),
   versao: () => ipcRenderer.invoke('aplicativo:versao'),
+  telaCheia: ligar => ipcRenderer.invoke('janela:telaCheia', ligar),
+  estaEmTelaCheia: () => ipcRenderer.invoke('janela:estaEmTelaCheia'),
   aoTerAtualizacao: avisar => ipcRenderer.on('atualizacao:pronta', (_evento, versao) => avisar(versao)),
   instalarAtualizacao: () => ipcRenderer.invoke('atualizacao:instalar'),
 });

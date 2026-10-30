@@ -1,8 +1,9 @@
 :root {
-  --fundo: #faf7f2;
-  --superficie: #ffffff;
-  --bege: #efe6da;
-  --borda: #ece3d6;
+  /* Claro: papel levemente creme, cartões um tom acima, bordas quase invisíveis */
+  --fundo: #eee9e1;
+  --superficie: #f8f5f0;
+  --bege: #e6ddd0;
+  --borda: #e2d9cc;
   --texto: #3a2c24;
   --suave: #8a776a;
   --destaque: #7b5a44;
@@ -277,3 +278,93 @@ label { display: block; font-size: 14px; color: var(--suave); margin: var(--e3) 
   .conta-linha span { white-space: nowrap; }
   .resultado b { font-size: 15px; }
 }
+
+/* Formulários em linha (financeiro) e campos de tamanho */
+.tres { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--e3); }
+.tres label { text-align: center; }
+.tres .campo { text-align: center; }
+.formulario-linha { display: flex; gap: var(--e2); margin-top: var(--e3); align-items: center; }
+.formulario-linha .campo { flex: 1; min-width: 0; }
+.formulario-linha .campo.curto { flex: 0 0 90px; }
+.formulario-linha .btn { flex: none; margin-left: auto; }
+.marcador { display: flex; align-items: center; gap: var(--e2); margin: var(--e3) 0 var(--e2); color: var(--texto); font-size: 14px; cursor: pointer; }
+.marcador input { width: 18px; height: 18px; accent-color: var(--destaque); }
+.formulario-linha .marcador { margin: 0; }
+.btn.pequeno { flex: none; min-height: 32px; padding: 0 var(--e3); font-size: 13px; }
+.btn.pequeno svg { width: 16px; height: 16px; }
+.preco { color: var(--suave); }
+.card .tamanhos { margin-top: 2px; font-size: 12px; letter-spacing: .02em; }
+.tamanhos-mov { justify-content: center; margin-top: var(--e3); }
+.tamanhos-mov small { font-size: 11px; opacity: .7; }
+
+/* Contas do mês */
+.conta-mes .marcar { display: grid; place-items: center; flex: none; width: 24px; height: 24px; border: 1.5px solid var(--borda); border-radius: 7px; background: var(--superficie); color: var(--sobre); cursor: pointer; }
+.conta-mes.paga .marcar { background: var(--verde); border-color: var(--verde); }
+.conta-mes .marcar svg { width: 16px; height: 16px; }
+.conta-mes .dia { display: grid; justify-items: center; width: 36px; line-height: 1; }
+.conta-mes .dia b { font-size: 17px; }
+.conta-mes .dia small { font-size: 10px; }
+.conta-mes.paga .cresce, .conta-mes.paga > b { opacity: .5; text-decoration: line-through; }
+.conta-mes.atrasada .situacao { color: var(--vermelho); }
+.conta-mes.hoje .situacao { color: var(--destaque); font-weight: 500; }
+.total.alerta b { color: var(--vermelho); }
+
+/* Fiado */
+.devedor { padding: var(--e2) 0; border-bottom: 1px solid var(--borda); }
+.devedor:last-child { border-bottom: 0; }
+.devedor > .linha { border: 0; padding-bottom: var(--e1); }
+.compra-fiado { padding: 6px 0 6px var(--e3); border: 0; font-size: 14px; }
+
+/* Ajustes */
+.ajustes { display: grid; gap: var(--e1); }
+.ajuste { display: flex; align-items: center; gap: var(--e3); flex-wrap: wrap; padding: var(--e3) 0; border-bottom: 1px solid var(--borda); }
+.ajuste:last-child { border-bottom: 0; }
+.ajuste .chips { gap: var(--e2); }
+
+@media (max-width: 820px) {
+  .formulario-linha { flex-wrap: wrap; }
+  .formulario-linha .campo:not(.curto) { flex: 1 1 100%; }
+  .formulario-linha .campo.curto { flex: 1 1 80px; }
+}
+
+/* Desenho padrão do produto sem foto */
+svg.ilustracao { width: 58%; height: 58%; stroke-width: 2.2; color: var(--destaque); opacity: .55; }
+.foto > svg.ilustracao { width: 58%; height: 58%; opacity: .55; }
+.escolher-foto svg.ilustracao { width: auto; height: 96px; }
+.escolher-foto span { display: flex; align-items: center; gap: 6px; }
+.escolher-foto span svg { width: 16px; height: 16px; }
+
+/* Janelas compactas (notebook) */
+dialog { width: min(460px, calc(100% - 24px)); max-height: calc(100vh - 32px); border-radius: 16px; }
+.janela { padding: var(--e4) var(--e6) var(--e6); }
+.janela h2 { font-size: 20px; margin-bottom: var(--e3); }
+.janela label { margin: 10px 0 4px; font-size: 13px; }
+.janela .campo { padding: 8px 12px; font-size: 14px; }
+.janela .chips { gap: 6px; }
+.janela .acoes { margin-top: var(--e4); }
+.janela .btn { min-height: 38px; }
+.topo-form { display: grid; grid-template-columns: 112px 1fr; gap: var(--e4); align-items: end; }
+.topo-form label:first-child { margin-top: 0; }
+.topo-form .escolher-foto { height: 112px; aspect-ratio: 1; font-size: 12px; }
+.topo-form .escolher-foto svg.ilustracao { height: 56px; }
+.contador { margin-top: var(--e4); }
+.contador .redondo { width: 40px; height: 40px; }
+.contador input { width: 80px; font-size: 26px; padding: 4px; }
+
+/* Clientes */
+.lista-clientes { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--e3); }
+.cliente { display: flex; align-items: center; gap: var(--e3); width: 100%; padding: var(--e3) var(--e4); border: 1px solid var(--borda); border-radius: var(--canto); background: var(--superficie); text-align: left; cursor: pointer; }
+.cliente:hover { border-color: var(--destaque); }
+.cliente .cresce { display: grid; min-width: 0; }
+.cliente .cresce small { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.avatar { display: grid; place-items: center; flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--bege); color: var(--destaque); font-weight: 500; font-size: 14px; }
+.deve { display: grid; justify-items: end; color: var(--vermelho); line-height: 1.2; }
+.deve small { color: inherit; opacity: .8; font-size: 11px; }
+.em-dia { color: var(--verde); }
+.nova-cliente { margin-top: 0; }
+.nova-cliente .btn { margin-left: 0; }
+.ficha-resumo { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--e2); }
+.ficha-resumo span { display: grid; padding: var(--e2) var(--e3); border-radius: 10px; background: var(--fundo); }
+.ficha-resumo b { font-size: 15px; }
+.ficha-compras { max-height: 220px; overflow-y: auto; }
+@media (max-width: 820px) { .lista-clientes { grid-template-columns: 1fr; } .tema { display: none; } }

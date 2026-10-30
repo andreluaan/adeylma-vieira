@@ -11,6 +11,7 @@ const temaAtual = () => raiz.dataset.theme ?? (matchMedia('(prefers-color-scheme
 function mostrarBotao() {
   const escuro = temaAtual() === 'dark';
   $('#trocarTema').innerHTML = `${icone(escuro ? 'sun' : 'moon')}<span>${escuro ? 'Claro' : 'Escuro'}</span>`;
+  $('#temaAjustes').textContent = escuro ? 'Escuro' : 'Claro';
 }
 
 function trocarTema() {
@@ -21,5 +22,6 @@ function trocarTema() {
 
 export function iniciarTema() {
   $('#trocarTema').onclick = trocarTema;
+  $('#temaAjustes').onclick = trocarTema;
   mostrarBotao();
 }

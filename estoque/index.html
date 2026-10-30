@@ -8,7 +8,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,600&family=Jost:wght@300;400;500&display=swap">
 <link rel="stylesheet" href="css/estoque.css">
-<script>try { const t = localStorage.getItem('tema'); if (t) document.documentElement.dataset.theme = t; } catch {}</script>
+<script>
+  // Tema e tamanho salvos, aplicados antes de desenhar para a tela não piscar (ver js/tema.js e js/configuracoes.js)
+  try {
+    const tema = localStorage.getItem('tema');
+    if (tema) document.documentElement.dataset.theme = tema;
+    document.documentElement.style.zoom = localStorage.getItem('tamanho') ?? '0.9';
+  } catch {}
+</script>
 </head>
 <body>
 <aside class="lateral">
@@ -17,9 +24,11 @@
     <button class="ativo" data-tela="inicio"><i data-icone="home"></i>Início</button>
     <button data-tela="produtos"><i data-icone="grid"></i>Produtos</button>
     <button data-tela="vendas"><i data-icone="cart"></i>Vendas</button>
-    <button data-tela="resumo"><i data-icone="sliders"></i>Valores</button>
+    <button data-tela="clientes"><i data-icone="user"></i>Clientes</button>
+    <button data-tela="financeiro"><i data-icone="calendar"></i>Financeiro</button>
+    <button data-tela="resumo"><i data-icone="eye"></i>Valores</button>
     <button data-tela="historico"><i data-icone="refresh"></i>Movimentos</button>
-    <button data-tela="copias"><i data-icone="lock"></i>Cópias</button>
+    <button data-tela="copias"><i data-icone="sliders"></i>Ajustes</button>
   </nav>
   <button class="tema" id="trocarTema" aria-label="Trocar tema"><i data-icone="moon"></i><span>Escuro</span></button>
   <small class="versao" id="versao"></small>
@@ -82,8 +91,63 @@
     <div class="bloco" id="listaMov"></div>
   </section>
 
+  <section class="tela" id="clientes">
+    <div class="cabeca"><h2>Clientes</h2></div>
+    <div class="totais" id="totaisClientes"></div>
+    <div class="barra">
+      <label class="busca"><i data-icone="search"></i><input id="buscaCliente" type="search" placeholder="Procurar cliente"></label>
+    </div>
+    <div class="formulario-linha nova-cliente">
+      <input class="campo" id="novaClienteNome" placeholder="Nome da nova cliente">
+      <input class="campo" id="novaClienteTelefone" inputmode="tel" placeholder="Telefone (opcional)">
+      <button type="button" class="btn principal" id="adicionarCliente"><i data-icone="plus"></i>Adicionar</button>
+    </div>
+    <div class="lista-clientes" id="listaClientes"></div>
+  </section>
+
+  <section class="tela" id="financeiro">
+    <div class="cabeca"><h2>Financeiro</h2><p id="mesFinanceiro"></p></div>
+    <div class="totais" id="totaisFinanceiro"></div>
+    <div class="painel">
+      <div class="bloco">
+        <h3><i data-icone="calendar"></i>Contas do mês</h3>
+        <div id="listaContas"></div>
+        <div class="formulario-linha">
+          <input class="campo" id="novaContaNome" placeholder="Conta (ex.: aluguel)">
+          <input class="campo curto" id="novaContaValor" inputmode="decimal" placeholder="R$">
+          <input class="campo curto" id="novaContaDia" type="number" min="1" max="31" placeholder="Dia">
+        </div>
+        <div class="formulario-linha">
+          <label class="marcador"><input type="checkbox" id="novaContaFixa" checked> Todo mês</label>
+          <button type="button" class="btn principal" id="adicionarConta"><i data-icone="plus"></i>Adicionar conta</button>
+        </div>
+      </div>
+      <div class="bloco">
+        <h3><i data-icone="user"></i>Fiado · quem está devendo</h3>
+        <div id="listaFiado"></div>
+        <div class="formulario-linha">
+          <input class="campo" id="novoFiadoCliente" list="sugestoesCliente" placeholder="Cliente">
+          <input class="campo curto" id="novoFiadoValor" inputmode="decimal" placeholder="R$">
+        </div>
+        <div class="formulario-linha">
+          <input class="campo" id="novoFiadoDescricao" placeholder="O que levou (opcional)">
+          <button type="button" class="btn principal" id="adicionarFiado"><i data-icone="plus"></i>Anotar</button>
+        </div>
+      </div>
+      <div class="bloco largo"><h3><i data-icone="check-circle"></i>Recebidos</h3><div id="listaRecebidos"></div></div>
+    </div>
+    <datalist id="sugestoesCliente"></datalist>
+  </section>
+
   <section class="tela" id="copias">
-    <div class="cabeca"><h2>Cópias</h2><p>Escolha uma pasta do Google Drive.</p></div>
+    <div class="cabeca"><h2>Ajustes</h2></div>
+    <div class="bloco ajustes">
+      <h3><i data-icone="eye"></i>Tela</h3>
+      <div class="ajuste"><span class="cresce">Tamanho de tudo</span><div class="chips" id="escolhaTamanho"></div></div>
+      <div class="ajuste"><span class="cresce">Tela cheia <small>(ou tecla F11)</small></span><button type="button" class="chip" id="alternarTelaCheia"><span>Desligada</span></button></div>
+      <div class="ajuste"><span class="cresce">Tema</span><button type="button" class="chip" id="temaAjustes"></button></div>
+    </div>
+    <h3 class="subtitulo">Cópias de segurança</h3>
     <div class="total" id="estadoCopia"></div>
     <div class="acoes">
       <button class="btn principal" id="escolherPasta"><i data-icone="check-circle"></i>Escolher pasta</button>
@@ -102,10 +166,14 @@
 <dialog id="janelaProduto">
   <form class="janela" id="formProduto" method="dialog">
     <h2 id="tituloForm">Novo produto</h2>
-    <div class="escolher-foto" id="areaFoto"></div>
+    <div class="topo-form">
+      <div class="escolher-foto" id="areaFoto"></div>
+      <div>
+        <label for="fNome">Nome</label><input class="campo" id="fNome" required>
+        <label for="fRef">REF (código)</label><input class="campo" id="fRef" placeholder="Ex.: 10234">
+      </div>
+    </div>
     <input type="file" id="arquivoFoto" accept="image/*" hidden>
-    <label for="fNome">Nome</label>
-    <input class="campo" id="fNome" required>
     <label for="fMarca">Marca</label>
     <div class="chips sugestoes" id="sugestoesMarca" data-campo="fMarca"></div>
     <input class="campo" id="fMarca" placeholder="Nome da nova marca">
@@ -113,14 +181,20 @@
     <div class="chips sugestoes" id="sugestoesCategoria" data-campo="fCategoria"></div>
     <input class="campo" id="fCategoria" placeholder="Nome da nova categoria">
     <div class="dois">
-      <div><label for="fCusto">Custo (R$)</label><input class="campo" id="fCusto" inputmode="decimal" placeholder="0,00" required></div>
-      <div><label for="fPreco">Preço (R$)</label><input class="campo" id="fPreco" inputmode="decimal" placeholder="0,00" required></div>
-    </div>
-    <div class="dois">
-      <div><label for="fQtd">Quantidade</label><input class="campo" id="fQtd" type="number" min="0" value="0"></div>
+      <div><label for="fCusto">Custo de cada (R$)</label><input class="campo" id="fCusto" inputmode="decimal" placeholder="0,00" required></div>
       <div><label for="fMinimo">Avisar abaixo de</label><input class="campo" id="fMinimo" type="number" min="0" value="2"></div>
     </div>
-    <div class="conta" id="conta"></div>
+    <label>Quantidade</label>
+    <div class="chips">
+      <button type="button" class="chip ativo" id="fSemTamanhos">Sem tamanho</button>
+      <button type="button" class="chip" id="fTemTamanhos">Por tamanho (P, M, G)</button>
+    </div>
+    <div id="campoQtd"><input class="campo" id="fQtd" type="number" min="0" value="0" aria-label="Quantidade"></div>
+    <div class="tres" id="campoTamanhos" hidden>
+      <div><label for="fTamP">P</label><input class="campo" id="fTamP" type="number" min="0" value="0"></div>
+      <div><label for="fTamM">M</label><input class="campo" id="fTamM" type="number" min="0" value="0"></div>
+      <div><label for="fTamG">G</label><input class="campo" id="fTamG" type="number" min="0" value="0"></div>
+    </div>
     <div class="acoes">
       <button type="button" class="btn perigo" id="apagar" hidden aria-label="Apagar"><i data-icone="trash"></i></button>
       <button type="button" class="btn" id="cancelar">Cancelar</button>
@@ -148,10 +222,34 @@
   </div>
 </dialog>
 
+<dialog id="janelaCliente">
+  <div class="janela">
+    <h2 id="fichaTitulo"></h2>
+    <div class="ficha-resumo" id="fichaResumo"></div>
+    <h3 class="subtitulo">Conta</h3>
+    <div id="fichaConta"></div>
+    <h3 class="subtitulo">Compras</h3>
+    <div class="ficha-compras" id="fichaCompras"></div>
+    <h3 class="subtitulo">Dados</h3>
+    <div class="dois">
+      <div><label for="fichaNome">Nome</label><input class="campo" id="fichaNome"></div>
+      <div><label for="fichaTelefone">Telefone</label><input class="campo" id="fichaTelefone" inputmode="tel"></div>
+    </div>
+    <label for="fichaObservacao">Observação</label>
+    <input class="campo" id="fichaObservacao" placeholder="Ex.: tamanho M, prefere renda">
+    <div class="acoes">
+      <button type="button" class="btn perigo" id="apagarCliente" aria-label="Apagar cliente"><i data-icone="trash"></i></button>
+      <button type="button" class="btn" id="fecharCliente">Fechar</button>
+      <button type="button" class="btn principal" id="salvarCliente"><i data-icone="check"></i>Salvar</button>
+    </div>
+  </div>
+</dialog>
+
 <dialog id="janelaMov">
   <form class="janela" id="formMov" method="dialog">
     <h2 id="tituloMov"></h2>
     <p id="nomeMov" class="suave"></p>
+    <div class="chips tamanhos-mov" id="tamanhosMov" hidden></div>
     <div class="contador">
       <button type="button" class="redondo" id="menosUm" aria-label="Menos"><i data-icone="minus"></i></button>
       <input id="qtdMov" type="number" min="1" value="1">
@@ -161,6 +259,9 @@
       <label for="precoVenda">Vendido por (cada)</label>
       <input class="campo" id="precoVenda" inputmode="decimal" placeholder="0,00">
       <div class="conta" id="totalVenda"></div>
+      <label for="clienteVenda">Cliente (opcional)</label>
+      <input class="campo" id="clienteVenda" list="sugestoesCliente" placeholder="Nome da cliente">
+      <label class="marcador"><input type="checkbox" id="vendaFiado"> Venda fiado (vai pagar depois)</label>
     </div>
     <div class="acoes">
       <button type="button" class="btn" id="cancelarMov">Cancelar</button>

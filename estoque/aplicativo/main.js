@@ -121,6 +121,13 @@ function procurarAtualizacao(janela) {
 ipcMain.handle('atualizacao:instalar', () => autoUpdater.quitAndInstall(true, true));
 ipcMain.handle('aplicativo:versao', () => app.getVersion());
 
+// Tela cheia: lembrada para a próxima vez que abrir
+ipcMain.handle('janela:estaEmTelaCheia', evento => BrowserWindow.fromWebContents(evento.sender).isFullScreen());
+ipcMain.handle('janela:telaCheia', async (evento, ligar) => {
+  BrowserWindow.fromWebContents(evento.sender).setFullScreen(ligar);
+  await salvarConfig({ ...(await lerConfig()), telaCheia: ligar });
+});
+
 ipcMain.handle('copias:estado', estadoDasCopias);
 
 ipcMain.handle('copias:escolherPasta', async evento => {
@@ -155,13 +162,17 @@ function abrirJanela() {
     height: 820,
     minWidth: 380,
     title: 'Estoque Adeylma',
-    backgroundColor: '#faf7f2',
+    backgroundColor: '#eee9e1',
     autoHideMenuBar: true,
     show: false,
     webPreferences: { preload: path.join(__dirname, 'preload.js'), contextIsolation: true, sandbox: true },
   });
   janela.removeMenu();
-  janela.once('ready-to-show', () => { janela.maximize(); janela.show(); });
+  janela.once('ready-to-show', async () => {
+    janela.maximize();
+    if ((await lerConfig()).telaCheia) janela.setFullScreen(true);
+    janela.show();
+  });
   janela.loadURL('app://estoque/index.html');
   return janela;
 }

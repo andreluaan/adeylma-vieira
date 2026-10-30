@@ -9,7 +9,7 @@ const CHAVE_RASCUNHO = 'adeylma-estoque-v1'; // localStorage da primeira versão
 // Marcas que ela já revende; vêm salvas desde o primeiro uso
 const MARCAS_INICIAIS = ["D'Luck", 'Del Rayssa', 'La Paola'];
 
-export const dados = { produtos: [], movimentos: [], marcas: [...MARCAS_INICIAIS], categorias: [] };
+export const dados = { produtos: [], movimentos: [], marcas: [...MARCAS_INICIAIS], categorias: [], contas: [], fiados: [], clientes: [] };
 
 const ouvintes = [];
 
@@ -63,11 +63,14 @@ export const aoSalvar = ouvinte => ouvintes.push(ouvinte);
 
 export const ehCopiaValida = copia => Array.isArray(copia?.produtos) && Array.isArray(copia?.movimentos);
 
-export function substituir({ produtos = [], movimentos = [], marcas = MARCAS_INICIAIS, categorias = [] }) {
+export function substituir({ produtos = [], movimentos = [], marcas = MARCAS_INICIAIS, categorias = [], contas = [], fiados = [], clientes = [] }) {
   dados.produtos = produtos;
   dados.movimentos = movimentos;
   dados.marcas = [...marcas];
   dados.categorias = [...categorias];
+  dados.contas = contas;
+  dados.fiados = fiados;
+  dados.clientes = clientes;
 }
 
 function lerRascunho() {

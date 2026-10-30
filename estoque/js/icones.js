@@ -27,6 +27,7 @@ const ICONES = {
   "calendar": "<rect x=\"4\" y=\"5.5\" width=\"16\" height=\"15\" rx=\"2\"/><path d=\"M4 10h16M8.5 3.5v4M15.5 3.5v4\"/>",
   "x": "<path d=\"M6 6l12 12M18 6L6 18\"/>",
   "cart": "<path d=\"M3 4h2.5l2.2 11h10.6l2-8H6.3\"/><circle cx=\"9.5\" cy=\"19.5\" r=\"1.25\"/><circle cx=\"17\" cy=\"19.5\" r=\"1.25\"/>",
+  "user": "<circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M4 20c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5\"/>",
   "info": "<circle cx=\"12\" cy=\"12\" r=\"8.5\"/><path d=\"M12 11v5.5M12 8h.01\"/>",
 };
 

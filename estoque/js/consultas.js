@@ -41,7 +41,7 @@ export function somar(produtos) {
   return produtos.reduce((total, p) => ({
     pecas: total.pecas + p.qtd,
     custo: total.custo + p.custo * p.qtd,
-    venda: total.venda + p.preco * p.qtd,
+    venda: total.venda + (p.preco ?? 0) * p.qtd, // sem preço ainda (nunca vendido): não entra
   }), { pecas: 0, custo: 0, venda: 0 });
 }
 

@@ -11,7 +11,7 @@ export function linhaMovimento(m) {
   const entrada = m.tipo === 'entrada';
   return `<div class="linha">
     <span class="mov ${m.tipo}">${icone(entrada ? 'arrow-up' : 'arrow-down')}</span>
-    <span class="cresce">${escapar(m.produto)}<br><small>${dataCurta(m.data)}</small></span>
+    <span class="cresce">${escapar(m.produto)}${m.tamanho ? ` (${m.tamanho})` : ''}<br><small>${dataCurta(m.data)}${m.cliente ? ` · ${escapar(m.cliente)}` : ''}</small></span>
     <span class="valor"><b class="${m.tipo}">${entrada ? '+' : '−'}${m.qtd}</b>${entrada ? '' : `<br><small>${real(m.qtd * (m.preco ?? 0))}</small>`}</span>
   </div>`;
 }

@@ -2,10 +2,14 @@
 import { iniciarAtualizacao } from './atualizacao.js';
 import { aoSalvar, carregar, salvar } from './banco.js';
 import { registrarComprasQueFaltam } from './consultas.js';
+import { desenharConfiguracoes, iniciarConfiguracoes } from './configuracoes.js';
 import { iniciarCopias } from './copias.js';
 import { criarExemplos } from './exemplos.js';
 import { trocarIcones } from './icones.js';
 import { iniciarTema } from './tema.js';
+import { cadastrarClientesCitadas } from './clientes.js';
+import { desenharClientes, iniciarClientes } from './telas/clientes.js';
+import { desenharFinanceiro, iniciarFinanceiro } from './telas/financeiro.js';
 import { desenharHistorico } from './telas/historico.js';
 import { desenharInicio, iniciarInicio } from './telas/inicio.js';
 import { desenharListas, iniciarListas } from './telas/listas.js';
@@ -20,6 +24,9 @@ function desenharTudo() {
   desenharVendas();
   desenharValores();
   desenharHistorico();
+  desenharClientes();
+  desenharFinanceiro();
+  desenharConfiguracoes();
   desenharListas();
 }
 
@@ -38,10 +45,15 @@ async function iniciar() {
   iniciarListas();
   iniciarVendas();
   iniciarValores();
+  iniciarClientes();
+  iniciarFinanceiro();
+  iniciarConfiguracoes();
 
   try {
     await carregar(criarExemplos);
-    if (registrarComprasQueFaltam()) await salvar();
+    // Ajustes em dados de versões anteriores: compras que faltam e clientes citadas sem cadastro
+    const comprasNovas = registrarComprasQueFaltam();
+    if (cadastrarClientesCitadas() || comprasNovas) await salvar();
   } catch {
     avisar('Não consegui abrir o banco de dados');
   }

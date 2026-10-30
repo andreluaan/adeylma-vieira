@@ -32,10 +32,10 @@ export function desenharValores() {
       return `<tr><td>${escapar(marca)}</td><td>${s.pecas}</td><td>${real(s.custo)}</td><td>${real(s.venda)}</td><td class="entrada">${real(lucro(s))}</td></tr>`;
     }).join('');
 
-  $('#tabelaProdutos').innerHTML = '<tr><th>Produto</th><th>Custo</th><th>Preço</th><th>Lucro</th><th>Qtd</th></tr>' +
+  $('#tabelaProdutos').innerHTML = '<tr><th>Produto</th><th>Custo</th><th>Último preço</th><th>Lucro</th><th>Qtd</th></tr>' +
     produtos.map(p => `<tr>
       <td>${escapar(p.nome)}<br><small>${escapar(p.marca)}</small></td>
-      <td>${real(p.custo)}</td><td>${real(p.preco)}</td><td class="entrada">${real(p.preco - p.custo)}</td><td>${p.qtd}</td>
+      <td>${real(p.custo)}</td><td>${p.preco ? real(p.preco) : '—'}</td><td class="entrada">${p.preco ? real(p.preco - p.custo) : '—'}</td><td>${p.qtd}</td>
     </tr>`).join('');
 }
 
