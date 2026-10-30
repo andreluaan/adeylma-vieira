@@ -1,7 +1,7 @@
 {
   "name": "estoque-adeylma",
   "productName": "Estoque Adeylma",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Controle de estoque da Adeylma Vieira",
   "author": "André Luan",
   "main": "aplicativo/main.js",
