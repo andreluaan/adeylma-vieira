@@ -174,26 +174,38 @@
       </div>
     </div>
     <input type="file" id="arquivoFoto" accept="image/*" hidden>
-    <label for="fMarca">Marca</label>
-    <div class="chips sugestoes" id="sugestoesMarca" data-campo="fMarca"></div>
-    <input class="campo" id="fMarca" placeholder="Nome da nova marca">
-    <label for="fCategoria">Categoria</label>
-    <div class="chips sugestoes" id="sugestoesCategoria" data-campo="fCategoria"></div>
-    <input class="campo" id="fCategoria" placeholder="Nome da nova categoria">
+    <div class="dois">
+      <div class="lista-campo">
+        <label for="fMarca">Marca</label>
+        <div class="chips sugestoes" id="sugestoesMarca" data-campo="fMarca"></div>
+        <input class="campo" id="fMarca" placeholder="Nome da nova marca">
+      </div>
+      <div class="lista-campo">
+        <label for="fCategoria">Categoria</label>
+        <div class="chips sugestoes" id="sugestoesCategoria" data-campo="fCategoria"></div>
+        <input class="campo" id="fCategoria" placeholder="Nome da nova categoria">
+      </div>
+    </div>
     <div class="dois">
       <div><label for="fCusto">Custo de cada (R$)</label><input class="campo" id="fCusto" inputmode="decimal" placeholder="0,00" required></div>
       <div><label for="fMinimo">Avisar abaixo de</label><input class="campo" id="fMinimo" type="number" min="0" value="2"></div>
     </div>
-    <label>Quantidade</label>
-    <div class="chips">
-      <button type="button" class="chip ativo" id="fSemTamanhos">Sem tamanho</button>
-      <button type="button" class="chip" id="fTemTamanhos">Por tamanho (P, M, G)</button>
-    </div>
-    <div id="campoQtd"><input class="campo" id="fQtd" type="number" min="0" value="0" aria-label="Quantidade"></div>
-    <div class="tres" id="campoTamanhos" hidden>
-      <div><label for="fTamP">P</label><input class="campo" id="fTamP" type="number" min="0" value="0"></div>
-      <div><label for="fTamM">M</label><input class="campo" id="fTamM" type="number" min="0" value="0"></div>
-      <div><label for="fTamG">G</label><input class="campo" id="fTamG" type="number" min="0" value="0"></div>
+    <div class="dois">
+      <div>
+        <label>Quantidade</label>
+        <div class="chips">
+          <button type="button" class="chip ativo" id="fSemTamanhos">Sem tamanho</button>
+          <button type="button" class="chip" id="fTemTamanhos">Por tamanho (P, M, G)</button>
+        </div>
+      </div>
+      <div>
+        <div id="campoQtd"><label for="fQtd">Unidades</label><input class="campo" id="fQtd" type="number" min="0" value="0"></div>
+        <div class="tres" id="campoTamanhos" hidden>
+          <div><label for="fTamP">P</label><input class="campo" id="fTamP" type="number" min="0" value="0"></div>
+          <div><label for="fTamM">M</label><input class="campo" id="fTamM" type="number" min="0" value="0"></div>
+          <div><label for="fTamG">G</label><input class="campo" id="fTamG" type="number" min="0" value="0"></div>
+        </div>
+      </div>
     </div>
     <div class="acoes">
       <button type="button" class="btn perigo" id="apagar" hidden aria-label="Apagar"><i data-icone="trash"></i></button>

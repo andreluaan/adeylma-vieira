@@ -354,6 +354,25 @@ dialog { width: min(460px, calc(100% - 24px)); max-height: calc(100vh - 32px); b
 .topo-form label:first-child { margin-top: 0; }
 .topo-form .escolher-foto { height: 112px; aspect-ratio: 1; font-size: 12px; }
 .topo-form .escolher-foto svg.ilustracao { height: 56px; }
+
+/* Janela do produto: tamanho fixo, nada muda de lugar ao escolher opções */
+#janelaProduto { width: min(680px, calc(100% - 24px)); }
+#formProduto { display: grid; gap: var(--e4); padding: var(--e6); }
+#formProduto h2 { margin: 0; }
+#formProduto .dois { gap: var(--e4); }
+#formProduto label { margin: 0 0 var(--e1); }
+#formProduto .acoes { margin-top: var(--e2); }
+#formProduto .topo-form { grid-template-columns: 148px 1fr; align-items: stretch; }
+#formProduto .topo-form > div:last-child { display: grid; gap: var(--e3); }
+#formProduto .topo-form .escolher-foto { position: relative; width: auto; height: auto; aspect-ratio: auto; }
+#formProduto .topo-form .escolher-foto img { position: absolute; inset: 0; }
+#apagar[hidden] { display: none; }
+.lista-campo { height: 140px; }
+.lista-campo .sugestoes { height: 70px; margin-bottom: var(--e2); align-content: flex-start; overflow-y: auto; }
+.tres[hidden] { display: none; }
+@media (max-width: 640px) {
+  #formProduto .dois { grid-template-columns: 1fr; }
+}
 .contador { margin-top: var(--e4); }
 .contador .redondo { width: 40px; height: 40px; }
 .contador input { width: 80px; font-size: 26px; padding: 4px; }
